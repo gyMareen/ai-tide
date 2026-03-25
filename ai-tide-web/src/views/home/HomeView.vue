@@ -419,7 +419,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/variables.scss';
+@use '@/styles/variables.scss' as *;
 
 .home-view {
   min-height: 100vh;
@@ -816,7 +816,7 @@ onUnmounted(() => {
 }
 
 @keyframes float {
-  0%, 100% { { transform: translate(0, 0); }
+  0%, 100% { transform: translate(0px, 0px); }
   25% { transform: translate(30px, -30px); }
   50% { transform: translate(-20px, 20px); }
   75% { transform: translate(20px, -10px); }
