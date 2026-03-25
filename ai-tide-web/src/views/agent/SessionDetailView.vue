@@ -83,7 +83,7 @@
           <div class="info-list">
             <div class="info-item">
               <span class="info-label">开始时间</span>
-              <span class="info-value">{{ formatDateTime(session?.started_at) }}</span>
+              <span class="info-value">{{ formatDateTime(session?.started_at || undefined) }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">消息数量</span>
@@ -168,7 +168,7 @@
               <span class="conclusion-badge">✓</span>
             </h2>
             <div class="conclusion-time">
-              生成于 {{ formatDateTime(session?.completed_at) }}
+              生成于 {{ formatDateTime(session?.completed_at || undefined) }}
             </div>
           </div>
 
@@ -489,7 +489,7 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/variables.scss';
+@use '@/styles/variables.scss' as *;
 
 .session-detail-view {
   min-height: 100vh;
@@ -752,7 +752,7 @@ onMounted(() => {
 }
 
 .avatar-emoji {
-  width:: 40px;
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, $accent-primary, $accent-secondary);
@@ -1025,7 +1025,7 @@ onMounted(() => {
   line-height: 1.6;
   color: $text-primary;
 
-  &::v-deep {
+  :deep() {
     color: $accent-secondary;
     font-weight: 500;
   }
@@ -1058,7 +1058,7 @@ onMounted(() => {
   position: fixed;
   bottom: 120px;
   right: 400px;
-  display:与其他页面保持一致;
+  display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 20px;

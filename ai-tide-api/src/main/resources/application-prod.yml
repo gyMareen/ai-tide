@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-tide-api
+  profiles:
+      active: prod
+  datasource:
+        url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+        username: ${DB_USER}
+        password: ${DB_PASSWORD}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      jpa:
+        hibernate:
+          ddl-auto: update
+          open-in-view: true
+          format_sql: true
+          jdbc:
+            time_zone: UTC
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQLDialectdia
+          format_sql: true
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          max-wait: -1ms
+          shutdown-timeout: 200ms
+
+logging:
+  level:
+    root: INFO
+    com.ai.tide: INFO
+  file:
+      name: /app/logs/ai-tide-api.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    logback:
+      rollingpolicy:
+        max-file-size: 10MB
+        max-history: 30
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
